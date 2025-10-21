@@ -16,25 +16,25 @@ import com.papers.foodcatalogue.dto.FoodItemDTO;
 import com.papers.foodcatalogue.service.FoodItemService;
 
 @RestController
-@RequestMapping("/restaurant")
+@RequestMapping("/foodItem")
 public class FoodItemController {
     @Autowired
     FoodItemService foodItemService;
     
-    @GetMapping("/fetchAllRestaurants")
-    public ResponseEntity<List<FoodItemDTO>> fetchAllRestaurants() {
-        List<FoodItemDTO> allRestaurants = foodItemService.findAllfoodItems();
-        return new ResponseEntity<>(allRestaurants, HttpStatus.OK);
+    @GetMapping("/fetchAllfoodItems")
+    public ResponseEntity<List<FoodItemDTO>> fetchAllfoodItems() {
+        List<FoodItemDTO> allfoodItems = foodItemService.findAllfoodItems();
+        return new ResponseEntity<>(allfoodItems, HttpStatus.OK);
     }
     
-    @PostMapping("/addRestaurant")
-    public ResponseEntity<FoodItemDTO> saveRestaurant(@RequestBody FoodItemDTO foodItemDTO) {
-        FoodItemDTO restaurantAdded = foodItemService.addfoodItemInDB(foodItemDTO);
-        return new ResponseEntity<>(restaurantAdded, HttpStatus.CREATED);
+    @PostMapping("/addfoodItem")
+    public ResponseEntity<FoodItemDTO> savefoodItem(@RequestBody FoodItemDTO foodItemDTO) {
+        FoodItemDTO foodItemAdded = foodItemService.addfoodItemInDB(foodItemDTO);
+        return new ResponseEntity<>(foodItemAdded, HttpStatus.CREATED);
     }
 
     @GetMapping("/fetchById/{id}")
-    public ResponseEntity<FoodItemDTO> findRestaurantById(@PathVariable Long id) {
+    public ResponseEntity<FoodItemDTO> findfoodItemById(@PathVariable Long id) {
         return foodItemService.fetchfoodItemById(id);
     }
 
